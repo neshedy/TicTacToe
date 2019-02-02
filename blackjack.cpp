@@ -22,7 +22,6 @@ int main() {
 	int acenum = 0;
 	int acecount = 0;
 	int twocount=0, threecount=0, fourcount=0, fivecount=0, sixcount=0, sevencount=0, eightcount=0, ninecount=0, tencount=0, jackcount=0, queencount=0, kingcount=0;
-	int p = 1;
 	
 	while (n > 0)
 	{
@@ -145,7 +144,6 @@ int main() {
 			}
 			else if (draw == 'n')
 			{
-				p = 0;
 				if 	((totalnum == 21 && acenum == 0)
 					|| (totalnum == 10 && acenum == 1)
 					|| (totalnum == 20 && acenum == 1)
@@ -171,6 +169,5 @@ int main() {
 				}
 			}
 	}
-
 return 0;
 }
