@@ -19,15 +19,13 @@ int main() {
 	
 	int n = 1;
 	int totalnum = 0;
-
+	int acenum = 0;
+	int acecount = 0;
+	int twocount=0, threecount=0, fourcount=0, fivecount=0, sixcount=0, sevencount=0, eightcount=0, ninecount=0, tencount=0, jackcount=0, queencount=0, kingcount=0;
+	int p = 1;
+	
 	while (n > 0)
 	{
-		int acenum = 0;
-		int acecount = 0;
-		int twocount=0, threecount=0, fourcount=0, fivecount=0, sixcount=0, sevencount=0, eightcount=0, ninecount=0, tencount=0, jackcount=0, queencount=0, kingcount=0;
-		int p = 1;
-		while (p > 0)
-		{
 			cout << "Draw card? y/n" << endl;
 			char draw;
 			cin >> draw;
@@ -172,7 +170,6 @@ int main() {
 					acenum = 0;
 				}
 			}
-		}
 	}
 
 return 0;
