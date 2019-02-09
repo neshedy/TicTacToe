@@ -1,4 +1,4 @@
-// A Hello World! program in C#.
+// A TicTacToe program in C#.
 using System;
 namespace Program
 {
