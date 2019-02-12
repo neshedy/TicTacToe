@@ -40,8 +40,8 @@ class MyClass {
 			tttarray[0][0] == 'X' && tttarray[1][1] == 'X' && tttarray[2][2] == 'X' ||
 			tttarray[0][2] == 'X' && tttarray[1][1] == 'X' && tttarray[2][0] == 'X') {
 				
-				return true;
 				cout << "Playerone wins!" << endl;
+				return true;
 			}
 			else 
 				return false;
@@ -112,4 +112,6 @@ int main() {
 			break;
 		}
 	}
+	int tempint;
+	cin >> tempint;
 }
