@@ -1,3 +1,4 @@
+//a simple TicTacToe program in cpp
 #include <iostream>
 
 using namespace std;
@@ -5,7 +6,7 @@ using namespace std;
 class MyClass {
 	public:
 	char tttarray[3][3] = {{'-','-','-',},{'-','-','-',},{'-','-','-',},};
-	int playeronex, playeroney, playertwox, playertwoy;
+        int x, y;
 	
 	void DisplayBoard(){
 	for (int i = 0; i < 3; i ++) {
@@ -16,67 +17,41 @@ class MyClass {
 		}
 	}
 	
-	void PlayerOne(){
-		cout << "Player one enter x coordinate" << endl;
-		cin >> playeronex;
-		cout << "Player one enter y coordinate" << endl;
-		cin >> playeroney;
+    void GetInput(const char* whoami){
+        cout << "Player " << whoami << " enter x coordinate" << endl;
+        cin >> x;
+        cout << "Player " << whoami << " enter y coordinate" << endl;
+        cin >> y;
 	}
-	
-	void PlayerTwo(){
-		cout << "Player two enter x coordinate" << endl;
-		cin >> playertwox;
-		cout << "Player two enter y coordinate" << endl;
-		cin >> playertwoy;
-	}
-	
-	bool CheckWinOne(){
-		if (tttarray[0][0] == 'X' && tttarray[0][1] == 'X' && tttarray[0][2] == 'X' ||
-			tttarray[1][0] == 'X' && tttarray[1][1] == 'X' && tttarray[1][2] == 'X' ||
-			tttarray[2][0] == 'X' && tttarray[2][1] == 'X' && tttarray[2][2] == 'X' ||
-			tttarray[0][0] == 'X' && tttarray[1][0] == 'X' && tttarray[2][0] == 'X' ||
-			tttarray[0][1] == 'X' && tttarray[1][1] == 'X' && tttarray[2][1] == 'X' ||
-			tttarray[0][2] == 'X' && tttarray[1][2] == 'X' && tttarray[2][2] == 'X' ||
-			tttarray[0][0] == 'X' && tttarray[1][1] == 'X' && tttarray[2][2] == 'X' ||
-			tttarray[0][2] == 'X' && tttarray[1][1] == 'X' && tttarray[2][0] == 'X') {
-				
-				cout << "Playerone wins!" << endl;
+
+	bool CheckWinner(const char ali){
+		if (tttarray[0][0] == ali && tttarray[0][1] == ali && tttarray[0][2] == ali ||
+			tttarray[1][0] == ali && tttarray[1][1] == ali && tttarray[1][2] == ali ||
+			tttarray[2][0] == ali && tttarray[2][1] == ali && tttarray[2][2] == ali ||
+			tttarray[0][0] == ali && tttarray[1][0] == ali && tttarray[2][0] == ali ||
+			tttarray[0][1] == ali && tttarray[1][1] == ali && tttarray[2][1] == ali ||
+			tttarray[0][2] == ali && tttarray[1][2] == ali && tttarray[2][2] == ali ||
+			tttarray[0][0] == ali && tttarray[1][1] == ali && tttarray[2][2] == ali ||
+			tttarray[0][2] == ali && tttarray[1][1] == ali && tttarray[2][0] == ali)
 				return true;
-			}
 			else 
 				return false;
 	}
 	
-	bool CheckWinTwo(){
-		if (tttarray[0][0] == 'O' && tttarray[0][1] == 'O' && tttarray[0][2] == 'O' ||
-			tttarray[1][0] == 'O' && tttarray[1][1] == 'O' && tttarray[1][2] == 'O' ||
-			tttarray[2][0] == 'O' && tttarray[2][1] == 'O' && tttarray[2][2] == 'O' ||
-			tttarray[0][0] == 'O' && tttarray[1][0] == 'O' && tttarray[2][0] == 'O' ||
-			tttarray[0][1] == 'O' && tttarray[1][1] == 'O' && tttarray[2][1] == 'O' ||
-			tttarray[0][2] == 'O' && tttarray[1][2] == 'O' && tttarray[2][2] == 'O' ||
-			tttarray[0][0] == 'O' && tttarray[1][1] == 'O' && tttarray[2][2] == 'O' ||
-			tttarray[0][2] == 'O' && tttarray[1][1] == 'O' && tttarray[2][0] == 'O') {
-				cout << "Playertwo wins!" << endl;
-				return true;
-			}
-			else
-				return false;
-	}
-	
-	bool CheckSpaceOne(){
-		if (tttarray[playeronex][playeroney] == 'X' || tttarray[playeronex][playeroney] == 'O') {
-			cout << "Error space taken" << endl;
+	bool CheckDraw(const char bob) {
+		if (tttarray[0][1] != bob && tttarray[0][1] != bob && tttarray[0][2] != bob &&
+			tttarray[1][0] != bob && tttarray[1][1] != bob && tttarray[1][2] != bob &&
+			tttarray[2][0] != bob && tttarray[2][1] != bob && tttarray[2][2] != bob) 
 			return true;
-		}
 		else
 			return false;
 	}
 	
-	bool CheckSpaceTwo(){
-		if (tttarray[playertwox][playertwoy] == 'X' || tttarray[playertwox][playertwoy] == 'O') {
-			cout << "Error space taken" << endl;
-			return true;
-		}
+    bool CheckSpace(int x, int y){
+        if (tttarray[x][y] == 'X' || tttarray[x][y] == 'O') {
+		cout << "Error space taken" << endl;
+		return true;
+	}
 		else
 			return false;
 	}
@@ -89,26 +64,34 @@ int main() {
 		MyObject.DisplayBoard();
 		bool playone = true;
 		while (playone == true) {
-			MyObject.PlayerOne();
-		if (MyObject.CheckSpaceOne() == false)
-			playone = false;
+			MyObject.GetInput("one");
+			if (MyObject.CheckSpace(MyObject.x, MyObject.y) == false)
+            playone = false;
 		}
-		MyObject.tttarray[MyObject.playeronex][MyObject.playeroney] = 'X';
-		if (MyObject.CheckWinOne() == true) {
-			shouldplay = false;
+            MyObject.tttarray[MyObject.x][MyObject.y] = 'X';
+			if (MyObject.CheckWinner('X') == true) {
+				cout << "playerone wins" << endl;
+				break;
+		}
+		if (MyObject.CheckDraw('-') == true) {
+			cout << "Draw" << endl;
 			break;
 		}
 		
 		MyObject.DisplayBoard();
 		bool playtwo = true;
 		while (playtwo == true) {
-			MyObject.PlayerTwo();
-		if (MyObject.CheckSpaceTwo() == false)
-			playtwo = false;
+			MyObject.GetInput("two");
+            if (MyObject.CheckSpace(MyObject.x,MyObject.y) == false)
+				playtwo = false;
 		}
-		MyObject.tttarray[MyObject.playertwox][MyObject.playertwoy] = 'O';
-		if (MyObject.CheckWinTwo() == true) {
-			shouldplay = false;
+		MyObject.tttarray[MyObject.x][MyObject.y] = 'O';
+		if (MyObject.CheckWinner('O') == true) {
+			cout << "Playertwo wins" << endl;
+			break;
+		}
+		if (MyObject.CheckDraw('-') == true) {
+			cout << "Draw" << endl;
 			break;
 		}
 	}
